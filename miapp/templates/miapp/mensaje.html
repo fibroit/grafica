@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPIs Minisúper Online</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>KPIs Minisúper Online</h1>
+
+    <!-- Gráfica de Volumen de Ventas Mensuales -->
+    <div class="chart-container">
+        <canvas id="ventasChart"></canvas>
+    </div>
+
+    <!-- Gráfica de Control de Inventarios -->
+    <div class="chart-container">
+        <canvas id="inventarioChart"></canvas>
+    </div>
+
+    <!-- Gráfica de Tasa de Retención de Clientes -->
+    <div class="chart-container">
+        <canvas id="retencionChart"></canvas>
+    </div>
+
+    <!-- Script para generar las gráficas -->
+    <script>
+        // Etiquetas de los meses
+        const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+        // Datos de ejemplo para las gráficas
+        const ventasPorMes = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75];
+        const inventarioPorMes = [200, 180, 250, 220, 240, 230, 260, 210, 190, 300, 280, 320];
+        const retencionPorMes = [50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105];
+
+        // Crear la gráfica de ventas
+        const ctxVentas = document.getElementById('ventasChart').getContext('2d');
+        const ventasChart = new Chart(ctxVentas, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Volumen de Ventas',
+                    data: ventasPorMes,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Crear la gráfica de inventarios
+        const ctxInventario = document.getElementById('inventarioChart').getContext('2d');
+        const inventarioChart = new Chart(ctxInventario, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Control de Inventarios',
+                    data: inventarioPorMes,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Crear la gráfica de retención de clientes
+        const ctxRetencion = document.getElementById('retencionChart').getContext('2d');
+        const retencionChart = new Chart(ctxRetencion, {
+            type: 'bar',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Retención de Clientes',
+                    data: retencionPorMes,
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
